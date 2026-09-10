@@ -1,6 +1,6 @@
 ---
 name: wechat-miniprogram-builder
-description: Build, repair, test, and prepare WeChat Mini Programs for delivery or review. Use when Codex needs to turn an idea into a scoped Mini Program, write or modify native Mini Program projects (WXML/WXSS/JavaScript or TypeScript), choose local versus cloud data, diagnose developer-tool or device bugs, conduct release/privacy/domain audits, or guide a user through experience builds and submission.
+description: 从需求到交付构建、修复、测试和发布微信小程序。适用于将想法梳理为可控范围的 MVP、编写或修改原生微信小程序项目（WXML/WXSS/JavaScript/TypeScript）、选择本地或云端数据方案、排查微信开发者工具或真机问题、进行发布前隐私/域名/接口审计，以及指导体验版、上传和提审准备。
 ---
 
 # 微信小程序构建

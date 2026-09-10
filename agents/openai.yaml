@@ -1,4 +1,4 @@
 interface:
   display_name: "微信小程序构建"
   short_description: "微信小程序从需求梳理到真机测试与发布审计的完整工作流"
-  default_prompt: "Use $wechat-miniprogram-builder to plan, build, test, and prepare a WeChat Mini Program for release."
+  default_prompt: "使用 $wechat-miniprogram-builder：请用中文帮我规划、开发、测试并准备发布一个微信小程序。"

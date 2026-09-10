@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a conservative static release inventory for a Mini Program project."""
+"""为微信小程序项目生成保守的发布前静态盘点报告。"""
 
 from __future__ import annotations
 
@@ -131,31 +131,31 @@ def markdown(report: dict[str, object]) -> str:
 
     config = report["configuration"]
     assert isinstance(config, dict)
-    lines = ["# Mini Program static audit", "", f"Project: `{report['project']}`", f"Files scanned: {report['files_scanned']}", "", "## Configuration"]
+    lines = ["# 微信小程序静态审计", "", f"项目：`{report['project']}`", f"扫描文件数：{report['files_scanned']}", "", "## 配置"]
     lines.extend(f"- `{key}`: `{value}`" for key, value in config.items() if value is not None)
-    lines += ["", "## Declared routes"]
+    lines += ["", "## 已声明页面路由"]
     route_items = [{"route": route} for route in report["routes"]]
     lines.extend(rows(route_items, ["route"]))
     for title, items, keys in [
-        ("Network API calls", report["network_calls"], ["file", "line", "kind", "excerpt"]),
-        ("URL literals", report["url_literals"], ["file", "line", "url", "secure"]),
-        ("Privacy-related API calls", report["privacy_apis"], ["file", "line", "kind", "excerpt"]),
-        ("console.log calls", report["console_logs"], ["file", "line", "excerpt"]),
+        ("网络 API 调用", report["network_calls"], ["file", "line", "kind", "excerpt"]),
+        ("URL 字面量", report["url_literals"], ["file", "line", "url", "secure"]),
+        ("隐私相关 API 调用", report["privacy_apis"], ["file", "line", "kind", "excerpt"]),
+        ("console.log 调用", report["console_logs"], ["file", "line", "excerpt"]),
     ]:
         lines += ["", f"## {title}"]
         lines.extend(rows(items, keys))
-    lines += ["", "## Interpretation", "This is a static inventory, not proof of runtime behavior or platform-console configuration. Review every finding and mark missing evidence as not verified."]
+    lines += ["", "## 说明", "本报告仅为静态盘点，不能证明真机运行结果或微信后台配置。请逐项复核；缺少证据时必须标记为“未验证”。"]
     return "\n".join(lines) + "\n"
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("project", type=Path, help="Mini Program project directory")
+    parser.add_argument("project", type=Path, help="微信小程序项目目录")
     parser.add_argument("--format", choices=("markdown", "json"), default="markdown")
     args = parser.parse_args()
     root = args.project.expanduser().resolve()
     if not root.is_dir():
-        parser.error(f"not a directory: {root}")
+        parser.error(f"不是目录：{root}")
     report = audit(root)
     if args.format == "json":
         print(json.dumps(report, ensure_ascii=False, indent=2))
